@@ -1,6 +1,6 @@
 # Project Phase & Context Switch Status
 
-**Last Updated:** _Phase 1 Initialization_
+**Last Updated:** _Phase 2 In Progress_
 **Active Branch:** `development`
 
 ---
@@ -25,7 +25,7 @@ Since this is a solo portfolio project, we avoid overly complex Gitflow. We use 
 - [x] Create `./agents` rules constraint and tracking mechanism.
 - [x] Branch out to `development` for active infrastructure drafting.
 
-### 🔄 Phase 1: Infrastructure Provisioning (IaC via Terraform & Kind)
+### ✅ Phase 1: Infrastructure Provisioning (IaC via Terraform & Kind)
 **Goal:** Declaratively scaffold a multi-node Kubernetes cluster.
 - [x] Define `terraform/providers.tf` for local Kind driver.
 - [x] Define cluster schema inside `terraform/main.tf` (1 Control Plane, 2 Workers).
@@ -33,11 +33,13 @@ Since this is a solo portfolio project, we avoid overly complex Gitflow. We use 
 - [x] Apply Terraform configuration to spin up the cluster effectively.
 - [x] Document the successful cluster creation process in README or comments.
 
-### ⏭ Phase 2: Core Cluster Services
+### 🔄 Phase 2: Core Cluster Services
 **Goal:** Expose the internal network via an Ingress Controller using Helm via Terraform.
-- [ ] Setup NGINX Ingress controller using the official Helm Chart provider in Terraform.
-- [ ] Configure `ingress-nginx` NodePorts corresponding to the host mappings defined in Phase 1.
-- [ ] Deploy a quick dummy "echo-server" locally to trace the ingress route end-to-end to ensure packets route properly.
+- [x] Setup NGINX Ingress controller using the official Helm Chart provider in Terraform.
+- [x] Configure `ingress-nginx` hostPort mode corresponding to the host mappings defined in Phase 1.
+- [x] Create echo-server K8s manifests (Deployment, Service, Ingress) for validation.
+- [ ] Apply ingress controller and echo-server to cluster (blocked: Docker Desktop daemon restart needed).
+- [ ] Verify end-to-end routing: `curl -H "Host: echo.homelab.local" http://localhost`
 
 ### ⏭ Phase 3: The Observability Stack
 **Goal:** Add prometheus and grafana for real-time local cluster health checking.
@@ -66,15 +68,26 @@ Since this is a solo portfolio project, we avoid overly complex Gitflow. We use 
 c:\Users\user\k8s-homelab\
 ├── .git/                 
 ├── .agents/              
-│   ├── rule.md
-│   └── status.md         # (This File)
-├── bin/                  # Downloaded binaries 
+│   ├── phase2-plan.md     # Detailed Phase 2 execution plan
+│   ├── rules.md           # AI agent rules and code style
+│   └── status.md          # (This File)
+├── bin/                   # Downloaded binaries (gitignored)
+├── k8s/
+│   └── echo-server/
+│       ├── deployment.yaml
+│       ├── service.yaml
+│       └── ingress.yaml
 ├── terraform/            
-│   └── providers.tf      # Kind provider declaration
+│   ├── providers.tf       # Kind + Helm + Kubernetes providers
+│   ├── main.tf            # Kind cluster definition
+│   ├── variables.tf       # All configurable inputs
+│   ├── ingress.tf         # NGINX Ingress Helm release
+│   └── outputs.tf         # Cluster endpoint output
 ├── .gitignore            
+├── kind-config.yaml       # Fallback cluster config for Kind CLI
 ├── README.md             
 └── setup.ps1             
 ```
 
 ---
-**Agent Directive:** Constantly review this specific file when transferring contextual boundaries. Next task is currently -> "**Setup NGINX Ingress controller using the official Helm Chart provider in Terraform.**"
+**Agent Directive:** Constantly review this specific file when transferring contextual boundaries. Next task is currently -> "**Apply ingress controller and echo-server to cluster after Docker Desktop daemon restart.**"

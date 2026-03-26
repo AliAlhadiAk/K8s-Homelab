@@ -36,3 +36,8 @@ This document establishes the ground rules and expected behavior for any AI agen
    - Provide description attributes to all defined inputs, outputs, and modules.
    - Format resources uniformly (`terraform fmt`) prior to committing.
    - Rely on variables instead of hard-coded configurations.
+
+7. **Code Style**:
+   - **No verbose block comments.** Code should be self-documenting. Use `description` fields in Terraform variables/outputs. Do not add banner-style comment headers or multi-line comment blocks above resources.
+   - Keep YAML manifests clean — labels and annotations convey intent, not comments.
+   - If something truly needs explanation, one short inline comment is acceptable.
