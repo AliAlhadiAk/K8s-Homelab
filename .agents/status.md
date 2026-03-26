@@ -28,8 +28,8 @@ Since this is a solo portfolio project, we avoid overly complex Gitflow. We use 
 ### 🔄 Phase 1: Infrastructure Provisioning (IaC via Terraform & Kind)
 **Goal:** Declaratively scaffold a multi-node Kubernetes cluster.
 - [x] Define `terraform/providers.tf` for local Kind driver.
-- [ ] Define cluster schema inside `terraform/main.tf` (1 Control Plane, 2 Workers).
-- [ ] Map ingress ports (80, 443) from host to Kind control plane networking API.
+- [x] Define cluster schema inside `terraform/main.tf` (1 Control Plane, 2 Workers).
+- [x] Map ingress ports (80, 443) from host to Kind control plane networking API.
 - [ ] Apply Terraform configuration to spin up the cluster effectively.
 - [ ] Document the successful cluster creation process in README or comments.
 
@@ -77,4 +77,4 @@ c:\Users\user\k8s-homelab\
 ```
 
 ---
-**Agent Directive:** Constantly review this specific file when transferring contextual boundaries. Next task is currently -> "**Define cluster schema inside `terraform/main.tf`**"
+**Agent Directive:** Constantly review this specific file when transferring contextual boundaries. Next task is currently -> "**Apply Terraform configuration to spin up the cluster effectively.**"
