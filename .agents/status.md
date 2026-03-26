@@ -30,8 +30,8 @@ Since this is a solo portfolio project, we avoid overly complex Gitflow. We use 
 - [x] Define `terraform/providers.tf` for local Kind driver.
 - [x] Define cluster schema inside `terraform/main.tf` (1 Control Plane, 2 Workers).
 - [x] Map ingress ports (80, 443) from host to Kind control plane networking API.
-- [ ] Apply Terraform configuration to spin up the cluster effectively.
-- [ ] Document the successful cluster creation process in README or comments.
+- [x] Apply Terraform configuration to spin up the cluster effectively.
+- [x] Document the successful cluster creation process in README or comments.
 
 ### ⏭ Phase 2: Core Cluster Services
 **Goal:** Expose the internal network via an Ingress Controller using Helm via Terraform.
@@ -77,4 +77,4 @@ c:\Users\user\k8s-homelab\
 ```
 
 ---
-**Agent Directive:** Constantly review this specific file when transferring contextual boundaries. Next task is currently -> "**Apply Terraform configuration to spin up the cluster effectively.**"
+**Agent Directive:** Constantly review this specific file when transferring contextual boundaries. Next task is currently -> "**Setup NGINX Ingress controller using the official Helm Chart provider in Terraform.**"
