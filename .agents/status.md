@@ -1,52 +1,80 @@
 # Project Phase & Context Switch Status
 
-**Last Updated:** _Initial Setup_
+**Last Updated:** _Phase 1 Initialization_
+**Active Branch:** `development`
 
-## Current Phase: Stage 2 (Infrastructure as Code)
-**Goal:** Provision a multi-node Kind cluster using Terraform local provider.
+---
 
-### Completed Tasks
-- ✅ Stage 1: Repository Foundation
-  - Initialized Git repository.
-  - Linked GitHub origin (`https://github.com/AliAlhadiAk/K8s-Homelab.git`).
-  - Added initial `README.md`.
-  - Created idempotent tool download script (`setup.ps1`).
-  - Set up `.gitignore` for binaries and terraform state.
-  - Setup `.agents/rule.md` and `.agents/status.md`.
+## 🌿 Branching Strategy (Solo / Senior Engineer)
+Since this is a solo portfolio project, we avoid overly complex Gitflow. We use a **Main/Development Pipeline**:
+- **`main`**: The production-ready state. Only contains complete, verified, and stable phases that are deployable at any time.
+- **`development`**: The active branch. All work, micro-commits, tests, and configurations happen here. 
+- **Commits**: Granular, atomic, and conventionally formatted `type(scope): message`.
+- **Workflow**: We work on `development`, complete a phase, and seamlessly merge to `main`.
 
-### Current Tasks
-- 🔄 Setting up Terraform configurations.
-  - Currently working on `terraform/providers.tf` and `terraform/main.tf` to instantiate the kind cluster.
+---
 
-### Upcoming Tasks
-- Define multi-node `kind` cluster with ingress port mappings in Terraform.
-- Stage 3: Helm deployments for NGINX ingress and Observability stack (Prometheus / Grafana).
-- Stage 4: Cloud-native dashboard application (Vite / React).
+## 📈 Multi-Phase Plan & Tasks Tracking
+
+### ✅ Phase 0: Foundation & Tooling 
+**Goal:** Initialize repository, git logic, AI agent persistence context, and core scripts.
+- [x] Init local git repository & connect remote (`main`).
+- [x] Create deterministic dependency download script (`setup.ps1`).
+- [x] Add global Gitignore for TF state and downloaded `.exe` binaries.
+- [x] Draft initial `README.md`.
+- [x] Create `./agents` rules constraint and tracking mechanism.
+- [x] Branch out to `development` for active infrastructure drafting.
+
+### 🔄 Phase 1: Infrastructure Provisioning (IaC via Terraform & Kind)
+**Goal:** Declaratively scaffold a multi-node Kubernetes cluster.
+- [x] Define `terraform/providers.tf` for local Kind driver.
+- [ ] Define cluster schema inside `terraform/main.tf` (1 Control Plane, 2 Workers).
+- [ ] Map ingress ports (80, 443) from host to Kind control plane networking API.
+- [ ] Apply Terraform configuration to spin up the cluster effectively.
+- [ ] Document the successful cluster creation process in README or comments.
+
+### ⏭ Phase 2: Core Cluster Services
+**Goal:** Expose the internal network via an Ingress Controller using Helm via Terraform.
+- [ ] Setup NGINX Ingress controller using the official Helm Chart provider in Terraform.
+- [ ] Configure `ingress-nginx` NodePorts corresponding to the host mappings defined in Phase 1.
+- [ ] Deploy a quick dummy "echo-server" locally to trace the ingress route end-to-end to ensure packets route properly.
+
+### ⏭ Phase 3: The Observability Stack
+**Goal:** Add prometheus and grafana for real-time local cluster health checking.
+- [ ] Ensure Prometheus Operator Helm Chart is deployed via Terraform.
+- [ ] Make Grafana accessible continuously via a local route, e.g., `grafana.homelab.local`.
+- [ ] Optionally configure one nice dashboard or link it properly for recruiters.
+
+### ⏭ Phase 4: Cloud-Native Dashboard UI ("Cluster Pulse")
+**Goal:** Code a visually striking, premium web application querying mock metrics or the kubernetes API to serve as a portfolio front.
+- [ ] Setup project using Vite (React + TypeScript).
+- [ ] Implement a dynamic, glassmorphism design with an interactive, modern user interface.
+- [ ] Build key components (Cluster Status, Node Health, Resource Load, Live Terminal Emulator UI).
+
+### ⏭ Phase 5: Application Deployment & Hardening
+**Goal:** Bring the dashboard onto the infrastructure.
+- [ ] Containerize the Vite App using a robust multi-stage `Dockerfile`.
+- [ ] Author declarative Kubernetes manifests: `Deployment`, `Service`, `Ingress`.
+- [ ] Apply to Kind cluster and verify the application resolves at `pulse.homelab.local`.
+- [ ] Clean up structure, perform a final squash/merge to `main`, and finalize the overarching README.md for recruiter consumption.
 
 ---
 
 ## Technical Context
-
 ### Folder Structure
 ```
 c:\Users\user\k8s-homelab\
-├── .git/                 # Git repository configuration
-├── .agents/              # AI Rules and status tracking
+├── .git/                 
+├── .agents/              
 │   ├── rule.md
-│   └── status.md
-├── bin/                  # Downloaded local binaries (gitignored)
-│   └── kind.exe
-├── terraform/            # Terraform configurations (Current Working Directory)
+│   └── status.md         # (This File)
+├── bin/                  # Downloaded binaries 
+├── terraform/            
 │   └── providers.tf      # Kind provider declaration
-├── .gitignore            # Rules to ignore binaries and TF states
-├── README.md             # Public-facing documentation
-└── setup.ps1             # Local tool dependency downloader
+├── .gitignore            
+├── README.md             
+└── setup.ps1             
 ```
 
-### Constraints & Important Notes
-- **Recruiter Perspective**: The user is using this repository to demonstrate complex systems skill for big tech scale. Everything must be deeply documented and explicitly professional.
-- **Micro-Commits**: Agents must make frequent, tiny `git` commits referencing the specific stage change.
-
 ---
-
-**Next Action for Agent**: Complete the Terraform Kind cluster definition in `terraform/main.tf` and commit.
+**Agent Directive:** Constantly review this specific file when transferring contextual boundaries. Next task is currently -> "**Define cluster schema inside `terraform/main.tf`**"
