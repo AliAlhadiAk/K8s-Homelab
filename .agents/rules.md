@@ -29,3 +29,10 @@ This document establishes the ground rules and expected behavior for any AI agen
 5. **Tooling & Boundaries**:
    - Rely heavily on `Terraform`, `Kind`, `Kubernetes Manifests (YAML)`, and `React/Vite`.
    - Never use manual imperative commands if a declarative solution exists (unless for debugging).
+
+6. **Terraform Best Practices**:
+   - Structure configuration explicitly: Split definitions into `providers.tf`, `main.tf`, `variables.tf`, and `outputs.tf` logically.
+   - **Idempotency is paramount**: Do not define properties that cause constant in-place redeployments on subsequent `terraform plan`.
+   - Provide description attributes to all defined inputs, outputs, and modules.
+   - Format resources uniformly (`terraform fmt`) prior to committing.
+   - Rely on variables instead of hard-coded configurations.
