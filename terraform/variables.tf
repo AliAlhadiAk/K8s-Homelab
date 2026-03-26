@@ -13,7 +13,7 @@ variable "k8s_version" {
 variable "ingress_nginx_chart_version" {
   description = "Pinned version of the ingress-nginx Helm chart."
   type        = string
-  default     = "4.9.0"
+  default     = "4.15.1"
 }
 
 variable "ingress_nginx_namespace" {
